@@ -27,7 +27,7 @@ public class ContactAppManager : MonoBehaviour {
 			GameObject[] msgs;
 			msgs = GameObject.FindGameObjectsWithTag("message");
 			for(int i = 0; i <= msgs.Length; i++ ) {
-				msgs[i].transform.Translate(0,50,0);
+				msgs[i].transform.Translate(0,100,0);
 				Debug.Log ("beep" + i);
 				new Messages("hi", Time.time.ToString(), senderName, message, messageBox, false);
 					}
