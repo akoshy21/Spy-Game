@@ -8,16 +8,24 @@ public class ContactAppManager : MonoBehaviour {
 	public string noteText;
 	public int contact = 0;
 
-	public Text contactZero;
+	// prefabs
+	public Text senderName;
+	public Text message;
+	public Image messageBox;
+
+	/// public Text contactZero;
 
 	// Use this for initialization
 	void Enable () {
-		// contactZero.text = GameManager.manager.no [0].text;
+		// contactZero.tex= GameManager.manager.no [0].text;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+			if (Input.GetKeyDown ("space"))
+			{
+				new Messages("hi", "hi", senderName, message, messageBox, false);
+					}
 	}
 
 	public void OnString_Notes(string value)

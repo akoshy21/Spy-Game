@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour {
 	// public List<PlayerNotes> no = new List<PlayerNotes>();
 	public float maintimes;
 
+	// pregabs
+
+
 	// Use this for initialization
 
 	void Awake () {
@@ -42,10 +45,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Update () {
-		if (Input.GetKeyDown ("space"))
-		{
-			SceneManager.LoadScene ("Messenger", LoadSceneMode.Additive);
-		}
+
 	}
 		
 	void OnDisable()
