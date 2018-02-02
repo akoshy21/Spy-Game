@@ -29,7 +29,7 @@ public class ContactAppManager : MonoBehaviour {
 			for(int i = 0; i <= msgs.Length; i++ ) {
 				msgs[i].transform.Translate(0,50,0);
 				Debug.Log ("beep" + i);
-			new Messages("hi", "hi", senderName, message, messageBox, false);
+				new Messages("hi", Time.time.ToString(), senderName, message, messageBox, false);
 					}
 		}
 	}
