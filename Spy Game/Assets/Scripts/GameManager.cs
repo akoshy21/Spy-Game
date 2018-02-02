@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
@@ -41,6 +42,10 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Update () {
+		if (Input.GetKeyDown ("space"))
+		{
+			SceneManager.LoadScene ("Messenger", LoadSceneMode.Additive);
+		}
 	}
 		
 	void OnDisable()
