@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - windowbg
+  - message
   layers:
   - Default
   - TransparentFX

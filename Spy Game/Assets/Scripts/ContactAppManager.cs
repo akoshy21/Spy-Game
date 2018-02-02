@@ -24,8 +24,14 @@ public class ContactAppManager : MonoBehaviour {
 	void Update () {
 			if (Input.GetKeyDown ("space"))
 			{
-				new Messages("hi", "hi", senderName, message, messageBox, false);
+			GameObject[] msgs;
+			msgs = GameObject.FindGameObjectsWithTag("message");
+			for(int i = 0; i <= msgs.Length; i++ ) {
+				msgs[i].transform.Translate(0,50,0);
+				Debug.Log ("beep" + i);
+			new Messages("hi", "hi", senderName, message, messageBox, false);
 					}
+		}
 	}
 
 	public void OnString_Notes(string value)

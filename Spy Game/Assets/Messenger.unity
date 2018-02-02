@@ -215,6 +215,53 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224751842787152464, guid: 4c8b337a06663ae43a0977d5ee4445ac,
     type: 2}
   m_PrefabInternal: {fileID: 100662913}
+--- !u!1 &878641596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 878641598}
+  - component: {fileID: 878641597}
+  m_Layer: 0
+  m_Name: AppManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &878641597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 878641596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b53d7d3631b0c45b0c90b5945c7216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noteText: 
+  contact: 0
+  senderName: {fileID: 114661273644449074, guid: 4c8b337a06663ae43a0977d5ee4445ac,
+    type: 2}
+  message: {fileID: 114030146303657526, guid: 4c8b337a06663ae43a0977d5ee4445ac, type: 2}
+  messageBox: {fileID: 114708610826438592, guid: 4c8b337a06663ae43a0977d5ee4445ac,
+    type: 2}
+--- !u!4 &878641598
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 878641596}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 283.03723, y: 203.36383, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1371087747
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,7 +417,7 @@ RectTransform:
   m_Children:
   - {fileID: 2098310956}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
