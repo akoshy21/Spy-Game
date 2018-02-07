@@ -14,6 +14,8 @@ public class Messages {
 	public bool isPlayer = false;
 	public Color boxColor;
 
+	public Vector2 boxPos;
+
 	private Color npcColor = new Color(0.5f, 0.5f, 0.5f);
 	private Color playerColor = new Color (1, 1, 1);
 
@@ -37,5 +39,9 @@ public class Messages {
 		msgBox.color = boxColor;
 
 		Object.Instantiate (msgBox, windowBG.transform);
+
+		boxPos.x = windowBG.transform.position.x;
+		boxPos.y = windowBG.transform.position.y;
+
 	}
 }
