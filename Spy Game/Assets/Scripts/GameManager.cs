@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour {
 	// public List<PlayerNotes> no = new List<PlayerNotes>();
 	public float maintimes;
 
-	public GameObject[] msgs;
+	public GameObject[] msgBoxes;
+	public List<Messages> msgs = new List<Messages>();
 
 	// pregabs
 

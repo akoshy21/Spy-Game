@@ -31,13 +31,13 @@ public class ContactAppManager : MonoBehaviour {
 			if (Input.GetKeyDown ("space"))
 			{
 			// GameObject[] msgs;
-			GameManager.manager.msgs = GameObject.FindGameObjectsWithTag("message");
-			for(int i = 0; i <= GameManager.manager.msgs.Length; i++ )
+			GameManager.manager.msgBoxes = GameObject.FindGameObjectsWithTag("message");
+			for(int i = 0; i < GameManager.manager.msgBoxes.Length; i++ )
 			{
-				GameManager.manager.msgs[i].transform.Translate(0,70,0);
-				Debug.Log ("beep" + i);
-				new Messages("hi", Time.time.ToString(), senderName, message, messageBox, false);
+				GameManager.manager.msgBoxes[i].transform.Translate(0,70,0);
+				Debug.Log ("beep " + i);
 			}
+			GameManager.manager.msgs.Add( new Messages("hi", Time.time.ToString(), senderName, message, messageBox, false));
 		}
 	}
 
