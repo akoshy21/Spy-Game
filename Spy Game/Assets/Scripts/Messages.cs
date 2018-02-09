@@ -14,12 +14,10 @@ public class Messages {
 	public bool isPlayer = false;
 	public Color boxColor;
 
-	public Vector3 boxPos;
+	private GameObject windowBG = GameObject.FindWithTag ("windowbg");
 
 	private Color npcColor = new Color(0.5f, 0.5f, 0.5f);
 	private Color playerColor = new Color (1, 1, 1);
-
-	private GameObject windowBG = GameObject.FindWithTag ("windowbg");
 
 	public Messages(string sndrName, string msg, Text sndrText, Text msgText, Image msgBox, bool isPlayer)
 	{
@@ -39,8 +37,6 @@ public class Messages {
 		msgBox.color = boxColor;
 
 		Object.Instantiate (msgBox, windowBG.transform);
-
-		boxPos = windowBG.transform.position;
-
+	
 	}
 }

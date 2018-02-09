@@ -12,6 +12,8 @@ public class ContactAppManager : MonoBehaviour {
 	public Text senderName;
 	public Text message;
 	public Image messageBox;
+
+	public GameObject windowbg; 
 //	List<Messages> messages;
 //	GameObject[] boxes;
 
@@ -20,24 +22,21 @@ public class ContactAppManager : MonoBehaviour {
 
 	// Use this for initialization
 	void OnEnable () {
-		/*if(GameManager.manager.msgs.Length > 0)
-		{
-			messages = GameManager.manager.msgs;
 
+		windowbg = GameObject.FindGameObjectWithTag ("windowbg"); 
+
+		foreach(Messages ms in GameManager.manager.msgs)
+		{
+			GameManager.manager.msgBoxes = GameObject.FindGameObjectsWithTag("message"); 
+
+			//GameManager.manager.msgs [i].boxPos = GameManager.manager.msgBoxes [i].transform.position;
 			for(int i = 0; i < GameManager.manager.msgBoxes.Length; i++ )
 			{
-				GameObject[] boxes = GameManager.manager.msgBoxes;
-				new Messages(messages[i].senderName, messages[i].message, boxes // finish this and add the whole find child thing 
+				GameManager.manager.msgBoxes[i].transform.Translate(0,GameManager.manager.msgBoxes[i].GetComponent<RectTransform>().rect.height,0);
+				Debug.Log ("pop " + i);
 			}
-		}*/
-	
-		// contactZero.tex= GameManager.manager.no [0].text;
-		/*for(int i = 0; i <= GameManager.manager.msgs.Length, i++)
-		{
-			// create position and etc
-
-			GameManager.manager.msgs[i].name
-		}*/
+			new Messages (ms.senderName, ms.message, senderName, message, messageBox, ms.isPlayer);
+		}
 	}
 	
 	// Update is called once per frame
@@ -52,6 +51,7 @@ public class ContactAppManager : MonoBehaviour {
 			{
 				GameManager.manager.msgBoxes[i].transform.Translate(0,70,0);
 				Debug.Log ("beep " + i);
+// 				if(GameManager.manager.msgBoxes[i].transform.position > // delete msgs higher than x pt
 			}
 			GameManager.manager.msgs.Add( new Messages("hi", Time.time.ToString(), senderName, message, messageBox, false));
 		}
@@ -61,7 +61,6 @@ public class ContactAppManager : MonoBehaviour {
 	{
 		for(int i = 0; i < GameManager.manager.msgBoxes.Length; i++ )
 		{
-			GameManager.manager.msgs [i].boxPos = GameManager.manager.msgBoxes [i].transform.position;
 			Debug.Log ("beep " + i);
 		}
 	}
