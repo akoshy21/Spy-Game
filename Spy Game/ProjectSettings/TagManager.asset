@@ -6,6 +6,7 @@ TagManager:
   tags:
   - windowbg
   - message
+  - scrollview
   layers:
   - Default
   - TransparentFX

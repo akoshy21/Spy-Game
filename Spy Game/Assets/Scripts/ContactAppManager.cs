@@ -45,6 +45,9 @@ public class ContactAppManager : MonoBehaviour {
 		if (Input.GetKeyDown ("space"))
 		{
 			// GameObject[] msgs;
+
+			GameManager.manager.msgBoxes = GameObject.FindGameObjectsWithTag("message"); 
+
 			for(int i = 0; i < GameManager.manager.msgBoxes.Length; i++ )
 			{
 				GameManager.manager.msgBoxes[i].transform.Translate(0,70,0);
