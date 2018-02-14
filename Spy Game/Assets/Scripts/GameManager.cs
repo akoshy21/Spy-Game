@@ -18,14 +18,20 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject contactButton;
 
+	// see if the contact/message app has started up yet.
 	public bool contactStartup = false;
 
+	// see if there's a new message
 	public bool newMessage = true;
 
 	// pregabs
 
 	private IEnumerator coroutine;
 
+	public List<Options> optionList = new List<Options>();
+	public int optionIndex = 0;
+
+	public string playerName;
 
 	// Use this for initialization
 
@@ -106,6 +112,17 @@ public class GameManager : MonoBehaviour {
 		}
 		//scene not currently loaded in the hierarchy:
 		return false;
+	}
+
+	public void UpdateMessagePos()
+	{
+		GameManager.manager.msgBoxes = GameObject.FindGameObjectsWithTag("message"); 
+
+		for(int i = 0; i < GameManager.manager.msgBoxes.Length; i++ )
+		{
+			GameManager.manager.msgBoxes[i].transform.Translate(0,70,0);
+			Debug.Log ("beep " + i);
+		}
 	}
 
 	IEnumerator MessageAlert()

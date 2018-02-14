@@ -431,6 +431,8 @@ MonoBehaviour:
   contactButton: {fileID: 1494298880}
   contactStartup: 0
   newMessage: 1
+  optionIndex: 0
+  playerName: Alice
 --- !u!4 &1439639245
 Transform:
   m_ObjectHideFlags: 0

@@ -28,6 +28,8 @@ public class ContactAppManager : MonoBehaviour {
 
 		GameManager.manager.newMessage = false;
 
+		InitializeOptions ();
+
 		// add previous messages
 		foreach(Messages ms in GameManager.manager.msgs)
 		{
@@ -48,6 +50,8 @@ public class ContactAppManager : MonoBehaviour {
 			GameManager.manager.msgs.Add(new Messages(handlerName, "HI THERE", senderName, message, messageBox, false));
 			GameManager.manager.contactStartup = true;
 		}
+
+		//FillOptions (GameManager.manager.optionIndex);
 	}
 	
 	// Update is called once per frame
@@ -76,9 +80,16 @@ public class ContactAppManager : MonoBehaviour {
 		}
 	}
 
-	public void OnString_Notes(string value)
+	public void InitializeOptions()
 	{
-		// set player name to the value of the uppercased value of the input
-		// GameManager.manager.no[contact].text = value;
+		GameManager.manager.optionList.Add (new Options ("Who is this?", "I'm not an agent.", "Who's an agent??", 1, 1, 1));
+		GameManager.manager.optionList.Add (new Options ("Who is this?", "I'm not an agent.", "Who's an agent??", 1, 1, 1));
+		GameManager.manager.optionList.Add (new Options ("Who is this?", "I'm not an agent.", "Who's an agent??", 1, 1, 1));
+
+	}
+
+	public void FillOptions(int o)
+	{
+		
 	}
 }

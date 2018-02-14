@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 144309883}
   - component: {fileID: 144309882}
   - component: {fileID: 144309881}
+  - component: {fileID: 144309884}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -221,6 +222,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 144309879}
+--- !u!114 &144309884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 144309879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f07095870e60234d9e5234ff10ec484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionNum: 2
+  buttonTxt: {fileID: 856381786}
+  senderName: {fileID: 114661273644449074, guid: 4c8b337a06663ae43a0977d5ee4445ac,
+    type: 2}
+  message: {fileID: 114030146303657526, guid: 4c8b337a06663ae43a0977d5ee4445ac, type: 2}
+  messageBox: {fileID: 114708610826438592, guid: 4c8b337a06663ae43a0977d5ee4445ac,
+    type: 2}
 --- !u!1 &856381784
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +349,7 @@ MonoBehaviour:
   messageBox: {fileID: 114708610826438592, guid: 4c8b337a06663ae43a0977d5ee4445ac,
     type: 2}
   windowbg: {fileID: 0}
+  handlerName: X
 --- !u!4 &878641598
 Transform:
   m_ObjectHideFlags: 0
@@ -354,6 +374,7 @@ GameObject:
   - component: {fileID: 891488690}
   - component: {fileID: 891488689}
   - component: {fileID: 891488688}
+  - component: {fileID: 891488691}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -454,6 +475,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 891488686}
+--- !u!114 &891488691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 891488686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f07095870e60234d9e5234ff10ec484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionNum: 1
+  buttonTxt: {fileID: 1449153378}
+  senderName: {fileID: 114661273644449074, guid: 4c8b337a06663ae43a0977d5ee4445ac,
+    type: 2}
+  message: {fileID: 114030146303657526, guid: 4c8b337a06663ae43a0977d5ee4445ac, type: 2}
+  messageBox: {fileID: 114708610826438592, guid: 4c8b337a06663ae43a0977d5ee4445ac,
+    type: 2}
 --- !u!1 &1040024178
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,6 +504,7 @@ GameObject:
   - component: {fileID: 1040024182}
   - component: {fileID: 1040024181}
   - component: {fileID: 1040024180}
+  - component: {fileID: 1040024183}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -565,6 +605,24 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1040024178}
+--- !u!114 &1040024183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1040024178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f07095870e60234d9e5234ff10ec484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  optionNum: 3
+  buttonTxt: {fileID: 1709769457}
+  senderName: {fileID: 114661273644449074, guid: 4c8b337a06663ae43a0977d5ee4445ac,
+    type: 2}
+  message: {fileID: 114030146303657526, guid: 4c8b337a06663ae43a0977d5ee4445ac, type: 2}
+  messageBox: {fileID: 114708610826438592, guid: 4c8b337a06663ae43a0977d5ee4445ac,
+    type: 2}
 --- !u!1 &1371087747
 GameObject:
   m_ObjectHideFlags: 0
