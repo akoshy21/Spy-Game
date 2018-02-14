@@ -118,11 +118,11 @@ public class GameManager : MonoBehaviour {
 
 	public void UpdateMessagePos()
 	{
-		GameManager.manager.msgBoxes = GameObject.FindGameObjectsWithTag("message"); 
+		msgBoxes = GameObject.FindGameObjectsWithTag("message"); 
 
-		for(int i = 0; i < GameManager.manager.msgBoxes.Length; i++ )
+		for(int i = 0; i < msgBoxes.Length; i++ )
 		{
-			GameManager.manager.msgBoxes[i].transform.Translate(0,70,0);
+			msgBoxes[i].transform.Translate(0,70,0);
 			Debug.Log ("beep " + i);
 		}
 	}

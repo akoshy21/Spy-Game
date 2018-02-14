@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class OptionButtons : MonoBehaviour {
 	
@@ -41,16 +42,19 @@ public class OptionButtons : MonoBehaviour {
 		{
 			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionOne, senderName, message, messageBox, true));
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectOne;
+			EventSystem.current.SetSelectedGameObject (null);
 		}
 		if (optionNum == 2)
 		{
 			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionTwo, senderName, message, messageBox, true));
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectTwo;
+			EventSystem.current.SetSelectedGameObject (null);
 		}
 		if (optionNum == 3)
 		{
 			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionThree, senderName, message, messageBox, true));
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectThree;
+			EventSystem.current.SetSelectedGameObject (null);
 		}
 	}
 }
