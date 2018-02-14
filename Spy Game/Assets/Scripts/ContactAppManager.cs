@@ -28,6 +28,7 @@ public class ContactAppManager : MonoBehaviour {
 
 		GameManager.manager.newMessage = false;
 
+		// add previous messages
 		foreach(Messages ms in GameManager.manager.msgs)
 		{
 			GameManager.manager.msgBoxes = GameObject.FindGameObjectsWithTag("message"); 

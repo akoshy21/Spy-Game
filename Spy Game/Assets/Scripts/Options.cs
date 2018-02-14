@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Options : MonoBehaviour {
+public class Options {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	string optionOne;
+	string optionTwo;
+	string optionThree;
+
+
 }
