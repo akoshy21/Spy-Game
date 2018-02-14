@@ -17,6 +17,7 @@ public class ContactAppManager : MonoBehaviour {
 //	List<Messages> messages;
 //	GameObject[] boxes;
 
+	public string handlerName = "X";
 
 	/// public Text contactZero;
 
@@ -36,6 +37,13 @@ public class ContactAppManager : MonoBehaviour {
 				Debug.Log ("pop " + i);
 			}
 			new Messages (ms.senderName, ms.message, senderName, message, messageBox, ms.isPlayer);
+		}
+
+		if (GameManager.manager.contactStartup == false)
+		{
+			//new Messages (handlerName, "Hello Agent. It's been a while. Welcome to the world.", false);
+			GameManager.manager.msgs.Add(new Messages(handlerName, "HI THERE", senderName, message, messageBox, false));
+			GameManager.manager.contactStartup = true;
 		}
 	}
 	

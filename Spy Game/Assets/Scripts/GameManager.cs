@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour {
 	public GameObject[] msgBoxes;
 	public List<Messages> msgs = new List<Messages>();
 
+	public bool contactStartup = false;
+
+
 	// pregabs
 
 

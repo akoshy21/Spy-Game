@@ -329,6 +329,7 @@ MonoBehaviour:
   message: {fileID: 114030146303657526, guid: 4c8b337a06663ae43a0977d5ee4445ac, type: 2}
   messageBox: {fileID: 114708610826438592, guid: 4c8b337a06663ae43a0977d5ee4445ac,
     type: 2}
+  windowbg: {fileID: 0}
 --- !u!4 &878641598
 Transform:
   m_ObjectHideFlags: 0

@@ -1,14 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class MessageManager : MonoBehaviour {
-
-	public Text senderName;
-	public Text message;
-	public Image messageBox;
-	public bool isPlayer = false;
+public class Options : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
