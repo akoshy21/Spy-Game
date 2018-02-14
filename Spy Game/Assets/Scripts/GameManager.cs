@@ -16,10 +16,15 @@ public class GameManager : MonoBehaviour {
 	public GameObject[] msgBoxes;
 	public List<Messages> msgs = new List<Messages>();
 
+	public GameObject contactButton;
+
 	public bool contactStartup = false;
 
+	public bool newMessage = true;
 
 	// pregabs
+
+	private IEnumerator coroutine;
 
 
 	// Use this for initialization
@@ -51,7 +56,12 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Update () {
-
+		/*if (newMessage == true)
+		{
+			coroutine = MessageAlert ();
+			StartCoroutine(coroutine);
+			Debug.Log ("toot");
+		}*/
 	}
 		
 	void OnDisable()
@@ -86,7 +96,30 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+	public bool checkIfLoaded(string sceneName) {
+		for(int i=0; i< UnityEditor.SceneManagement.EditorSceneManager.sceneCount; ++i) {
+			var scene = UnityEditor.SceneManagement.EditorSceneManager.GetSceneAt(i);
 
+			if(scene.name == sceneName) {
+				return true;//the scene is already loaded
+			}
+		}
+		//scene not currently loaded in the hierarchy:
+		return false;
+	}
+
+	IEnumerator MessageAlert()
+	{
+		if(checkIfLoaded("Messenger") == false)
+		{
+			yield return new WaitForSeconds(1);
+			Color originalColor = contactButton.GetComponent<Image> ().color;
+			contactButton.GetComponent<Image> ().color = Color.white;
+			Debug.Log ("HOWDY");
+			yield return new WaitForSeconds(0.5f);
+			contactButton.GetComponent<Image> ().color = originalColor;
+		}
+	}
 }
 
 [Serializable]

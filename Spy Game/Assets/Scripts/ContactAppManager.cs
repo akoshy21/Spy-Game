@@ -26,6 +26,8 @@ public class ContactAppManager : MonoBehaviour {
 
 		windowbg = GameObject.FindGameObjectWithTag ("windowbg"); 
 
+		GameManager.manager.newMessage = false;
+
 		foreach(Messages ms in GameManager.manager.msgs)
 		{
 			GameManager.manager.msgBoxes = GameObject.FindGameObjectsWithTag("message"); 

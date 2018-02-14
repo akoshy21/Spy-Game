@@ -427,6 +427,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maintimes: 0
+  msgBoxes: []
+  contactButton: {fileID: 1494298880}
+  contactStartup: 0
+  newMessage: 1
 --- !u!4 &1439639245
 Transform:
   m_ObjectHideFlags: 0
