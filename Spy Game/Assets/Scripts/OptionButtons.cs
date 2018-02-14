@@ -40,12 +40,17 @@ public class OptionButtons : MonoBehaviour {
 		if (optionNum == 1)
 		{
 			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionOne, senderName, message, messageBox, true));
+			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectOne;
 		}
 		if (optionNum == 2)
 		{
+			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionTwo, senderName, message, messageBox, true));
+			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectTwo;
 		}
 		if (optionNum == 3)
 		{
+			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionThree, senderName, message, messageBox, true));
+			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectThree;
 		}
 	}
 }

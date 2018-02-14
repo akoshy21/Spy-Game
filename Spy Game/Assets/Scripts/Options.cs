@@ -9,9 +9,9 @@ public class Options {
 	public string optionThree;
 
 	// 1 = positive, 0 = neutral, -1 = negative
-	int effectOne;
-	int effectTwo;
-	int effectThree;
+	public int effectOne;
+	public int effectTwo;
+	public int effectThree;
 
 	public Options(string one, string two, string three, int eOne, int eTwo, int eThree)
 	{

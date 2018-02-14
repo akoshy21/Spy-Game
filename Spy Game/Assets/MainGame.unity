@@ -432,7 +432,8 @@ MonoBehaviour:
   contactStartup: 0
   newMessage: 1
   optionIndex: 0
-  playerName: Alice
+  personality: 0
+  playerName: Player
 --- !u!4 &1439639245
 Transform:
   m_ObjectHideFlags: 0

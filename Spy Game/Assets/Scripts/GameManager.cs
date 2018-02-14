@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour {
 	public List<Options> optionList = new List<Options>();
 	public int optionIndex = 0;
 
+	public int personality;
+
 	public string playerName;
 
 	// Use this for initialization
