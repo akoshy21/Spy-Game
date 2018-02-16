@@ -13,6 +13,8 @@ public class Options {
 	public int effectTwo;
 	public int effectThree;
 
+	public int optionSelected;
+
 	public Options(string one, string two, string three, int eOne, int eTwo, int eThree)
 	{
 		optionOne = one;

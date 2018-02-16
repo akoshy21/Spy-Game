@@ -19,8 +19,9 @@ public class Messages {
 	private Color npcColor = new Color(0.5f, 0.5f, 0.5f);
 	private Color playerColor = new Color (1, 1, 1);
 
-	public Messages(string sndrName, string msg, Text sndrText, Text msgText, Image msgBox, bool isPlayer)
+	public Messages(string sndrName, string msg, Text sndrText, Text msgText, Image msgBox, bool player)
 	{
+		isPlayer = player;
 		if (isPlayer == true) {
 			boxColor = playerColor;
 		}

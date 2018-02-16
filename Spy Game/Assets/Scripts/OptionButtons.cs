@@ -13,8 +13,23 @@ public class OptionButtons : MonoBehaviour {
 	public Text message;
 	public Image messageBox;
 
+	public KeyCode key;
+
 	// Use this for initialization
 	void Start () {
+
+		if (optionNum == 1)
+		{
+			key = KeyCode.Alpha1;
+		}
+		if (optionNum == 2)
+		{
+			key = KeyCode.Alpha2;
+		}
+		if (optionNum == 3)
+		{
+			key = KeyCode.Alpha3;
+		}
 		Button btn = this.GetComponent<Button> ();
 		btn.onClick.AddListener (OptionsOnClick);
 	}
@@ -33,28 +48,36 @@ public class OptionButtons : MonoBehaviour {
 		{
 			buttonTxt.text = GameManager.manager.optionList[GameManager.manager.optionIndex].optionThree;
 		}
+
+		if(Input.GetKeyDown(key))
+		{
+			this.GetComponent<Button>().onClick.Invoke();
+		}
 	}
 
 	void OptionsOnClick()
 	{
-		GameManager.manager.UpdateMessagePos ();
 		if (optionNum == 1)
 		{
 			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionOne, senderName, message, messageBox, true));
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectOne;
 			EventSystem.current.SetSelectedGameObject (null);
+			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].optionSelected = 1;
 		}
 		if (optionNum == 2)
 		{
 			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionTwo, senderName, message, messageBox, true));
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectTwo;
 			EventSystem.current.SetSelectedGameObject (null);
+			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].optionSelected = 2;
 		}
 		if (optionNum == 3)
 		{
 			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionThree, senderName, message, messageBox, true));
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectThree;
 			EventSystem.current.SetSelectedGameObject (null);
+			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].optionSelected = 3;
 		}
+//		new Messages(GameManager.manager.handler <- ADD THE RESPONSE CODE HERE, write the story you idiot.
 	}
 }

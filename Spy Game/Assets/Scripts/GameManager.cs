@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour {
 	// public List<PlayerNotes> no = new List<PlayerNotes>();
 	public float maintimes;
 
-	public GameObject[] msgBoxes;
 	public List<Messages> msgs = new List<Messages>();
+	public List<String> responses = new List<String>();
 
 	public GameObject contactButton;
 
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour {
 
 	public string playerName;
 
+	public float boxHeight;
 	// Use this for initialization
 
 	void Awake () {
@@ -114,17 +115,6 @@ public class GameManager : MonoBehaviour {
 		}
 		//scene not currently loaded in the hierarchy:
 		return false;
-	}
-
-	public void UpdateMessagePos()
-	{
-		msgBoxes = GameObject.FindGameObjectsWithTag("message"); 
-
-		for(int i = 0; i < msgBoxes.Length; i++ )
-		{
-			msgBoxes[i].transform.Translate(0,70,0);
-			Debug.Log ("beep " + i);
-		}
 	}
 
 	IEnumerator MessageAlert()

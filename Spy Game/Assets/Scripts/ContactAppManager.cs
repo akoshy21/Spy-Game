@@ -33,21 +33,14 @@ public class ContactAppManager : MonoBehaviour {
 		// add previous messages
 		foreach(Messages ms in GameManager.manager.msgs)
 		{
-			GameManager.manager.msgBoxes = GameObject.FindGameObjectsWithTag("message"); 
-
-			//GameManager.manager.msgs [i].boxPos = GameManager.manager.msgBoxes [i].transform.position;
-			for(int i = 0; i < GameManager.manager.msgBoxes.Length; i++ )
-			{
-				GameManager.manager.msgBoxes[i].transform.Translate(0,GameManager.manager.msgBoxes[i].GetComponent<RectTransform>().rect.height,0);
-				Debug.Log ("pop " + i);
-			}
 			new Messages (ms.senderName, ms.message, senderName, message, messageBox, ms.isPlayer);
+			Debug.Log (ms.isPlayer);
 		}
 
 		if (GameManager.manager.contactStartup == false)
 		{
 			//new Messages (handlerName, "Hello Agent. It's been a while. Welcome to the world.", false);
-			GameManager.manager.msgs.Add(new Messages(handlerName, "Hello. \n I'm sure this must be a bit confusing, but we need your help.", senderName, message, messageBox, false));
+			GameManager.manager.msgs.Add(new Messages(handlerName, "Hello. \nI'm sure this must be a bit confusing, but we need your help.", senderName, message, messageBox, false));
 			GameManager.manager.contactStartup = true;
 		}
 
@@ -58,22 +51,18 @@ public class ContactAppManager : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown ("space"))
 		{
-			GameManager.manager.UpdateMessagePos ();
 			GameManager.manager.msgs.Add( new Messages("hi", Time.time.ToString(), senderName, message, messageBox, false));
 		}
+		Debug.Log (messageBox.GetComponent<RectTransform>().rect.height);
 	}
 
 	void OnDisable()
 	{
-		for(int i = 0; i < GameManager.manager.msgBoxes.Length; i++ )
-		{
-			Debug.Log ("beep " + i);
-		}
 	}
 
 	public void InitializeOptions()
 	{
-		GameManager.manager.optionList.Add (new Options ("Who is this?", "I'm not an agent.", "Who's an agent??", 1, 1, 1));
+		GameManager.manager.optionList.Add (new Options ("Who are you?", "What is this?", "Help with what?", 1, 1, 1));
 		GameManager.manager.optionList.Add (new Options ("Who is this?", "I'm not an agent.", "Who's an agent??", 1, 1, 1));
 		GameManager.manager.optionList.Add (new Options ("Who is this?", "I'm not an agent.", "Who's an agent??", 1, 1, 1));
 
