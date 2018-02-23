@@ -8,6 +8,8 @@ TagManager:
   - message
   - scrollview
   - building
+  - contactbutton
+  - option
   layers:
   - Default
   - TransparentFX

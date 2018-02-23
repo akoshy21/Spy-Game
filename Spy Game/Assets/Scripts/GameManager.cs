@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour {
 	public float maintimes;
 
 	public List<Messages> msgs = new List<Messages>();
-	public List<String> responses = new List<String>();
+	public String[] responses;
 
 	public GameObject contactButton;
 
@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour {
 
 	// see if there's a new message
 	public bool newMessage = true;
+
+	public string handlerName = "X";
 
 	// pregabs
 
@@ -71,6 +73,11 @@ public class GameManager : MonoBehaviour {
 			StartCoroutine(coroutine);
 			Debug.Log ("toot");
 		}*/
+
+		if(checkIfLoaded("MainGame") == true)
+		{
+			contactButton = GameObject.FindGameObjectWithTag ("contactbutton");
+		}
 	}
 		
 	void OnDisable()
@@ -117,6 +124,19 @@ public class GameManager : MonoBehaviour {
 		return false;
 	}
 
+	public void OnString_PlayerName(string value)
+	{
+		playerName = value.ToUpper ();
+	}
+
+	public void InstantiateResponses()
+	{
+		responses = new string[10];
+
+		responses [0] = "The important thing now is that we're calling you in.";
+		
+	}
+
 	IEnumerator MessageAlert()
 	{
 		if(checkIfLoaded("Messenger") == false)
@@ -129,6 +149,7 @@ public class GameManager : MonoBehaviour {
 			contactButton.GetComponent<Image> ().color = originalColor;
 		}
 	}
+
 }
 
 [Serializable]

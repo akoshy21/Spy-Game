@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 144309884}
   m_Layer: 5
   m_Name: Button (1)
-  m_TagString: Untagged
+  m_TagString: option
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -314,6 +314,8 @@ MonoBehaviour:
   message: {fileID: 114030146303657526, guid: 4c8b337a06663ae43a0977d5ee4445ac, type: 2}
   messageBox: {fileID: 114708610826438592, guid: 4c8b337a06663ae43a0977d5ee4445ac,
     type: 2}
+  key: 0
+  contactApp: {fileID: 878641596}
 --- !u!1 &412973762
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +516,9 @@ MonoBehaviour:
   messageBox: {fileID: 114708610826438592, guid: 4c8b337a06663ae43a0977d5ee4445ac,
     type: 2}
   windowbg: {fileID: 412973762}
-  handlerName: X
+  newResponse: 0
+  rNum: 0
+  r: 0
 --- !u!4 &878641598
 Transform:
   m_ObjectHideFlags: 0
@@ -542,7 +546,7 @@ GameObject:
   - component: {fileID: 891488691}
   m_Layer: 5
   m_Name: Button
-  m_TagString: Untagged
+  m_TagString: option
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -658,6 +662,8 @@ MonoBehaviour:
   message: {fileID: 114030146303657526, guid: 4c8b337a06663ae43a0977d5ee4445ac, type: 2}
   messageBox: {fileID: 114708610826438592, guid: 4c8b337a06663ae43a0977d5ee4445ac,
     type: 2}
+  key: 0
+  contactApp: {fileID: 878641596}
 --- !u!1 &1040024178
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,7 +678,7 @@ GameObject:
   - component: {fileID: 1040024183}
   m_Layer: 5
   m_Name: Button (2)
-  m_TagString: Untagged
+  m_TagString: option
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -788,6 +794,8 @@ MonoBehaviour:
   message: {fileID: 114030146303657526, guid: 4c8b337a06663ae43a0977d5ee4445ac, type: 2}
   messageBox: {fileID: 114708610826438592, guid: 4c8b337a06663ae43a0977d5ee4445ac,
     type: 2}
+  key: 0
+  contactApp: {fileID: 878641596}
 --- !u!1 &1292009983
 GameObject:
   m_ObjectHideFlags: 0

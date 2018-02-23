@@ -15,9 +15,10 @@ public class OptionButtons : MonoBehaviour {
 
 	public KeyCode key;
 
+	public GameObject contactApp;
+
 	// Use this for initialization
 	void Start () {
-
 		if (optionNum == 1)
 		{
 			key = KeyCode.Alpha1;
@@ -36,6 +37,8 @@ public class OptionButtons : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		Debug.Log (GameManager.manager.optionList[GameManager.manager.optionIndex].optionOne);
+
 		if (optionNum == 1)
 		{
 			buttonTxt.text = GameManager.manager.optionList[GameManager.manager.optionIndex].optionOne;
@@ -63,21 +66,30 @@ public class OptionButtons : MonoBehaviour {
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectOne;
 			EventSystem.current.SetSelectedGameObject (null);
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].optionSelected = 1;
+
+			contactApp.GetComponent<ContactAppManager> ().rNum = optionNum;
 		}
-		if (optionNum == 2)
+		else if (optionNum == 2)
 		{
 			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionTwo, senderName, message, messageBox, true));
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectTwo;
 			EventSystem.current.SetSelectedGameObject (null);
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].optionSelected = 2;
+
+			contactApp.GetComponent<ContactAppManager> ().rNum = optionNum;
 		}
-		if (optionNum == 3)
+		else if (optionNum == 3)
 		{
 			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionThree, senderName, message, messageBox, true));
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectThree;
 			EventSystem.current.SetSelectedGameObject (null);
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].optionSelected = 3;
+
+			contactApp.GetComponent<ContactAppManager> ().rNum = optionNum;
 		}
-//		new Messages(GameManager.manager.handler <- ADD THE RESPONSE CODE HERE, write the story you idiot.
+
+		contactApp.GetComponent<ContactAppManager> ().newResponse = true;
+		GameManager.manager.optionIndex++;
 	}
+
 }
