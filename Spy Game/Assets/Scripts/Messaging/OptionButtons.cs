@@ -37,8 +37,6 @@ public class OptionButtons : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log (GameManager.manager.optionList[GameManager.manager.optionIndex].optionOne);
-
 		if (optionNum == 1)
 		{
 			buttonTxt.text = GameManager.manager.optionList[GameManager.manager.optionIndex].optionOne;
@@ -62,7 +60,7 @@ public class OptionButtons : MonoBehaviour {
 	{
 		if (optionNum == 1)
 		{
-			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionOne, senderName, message, messageBox, true));
+			GameManager.manager.msgs.Add(new Messages("Agent 0-21", GameManager.manager.optionList[GameManager.manager.optionIndex].optionOne, senderName, message, messageBox, true));
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectOne;
 			EventSystem.current.SetSelectedGameObject (null);
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].optionSelected = 1;
@@ -71,7 +69,7 @@ public class OptionButtons : MonoBehaviour {
 		}
 		else if (optionNum == 2)
 		{
-			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionTwo, senderName, message, messageBox, true));
+			GameManager.manager.msgs.Add(new Messages("Agent 0-21", GameManager.manager.optionList[GameManager.manager.optionIndex].optionTwo, senderName, message, messageBox, true));
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectTwo;
 			EventSystem.current.SetSelectedGameObject (null);
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].optionSelected = 2;
@@ -80,7 +78,7 @@ public class OptionButtons : MonoBehaviour {
 		}
 		else if (optionNum == 3)
 		{
-			GameManager.manager.msgs.Add(new Messages(GameManager.manager.playerName, GameManager.manager.optionList[GameManager.manager.optionIndex].optionThree, senderName, message, messageBox, true));
+			GameManager.manager.msgs.Add(new Messages("Agent 0-21", GameManager.manager.optionList[GameManager.manager.optionIndex].optionThree, senderName, message, messageBox, true));
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].effectThree;
 			EventSystem.current.SetSelectedGameObject (null);
 			GameManager.manager.personality += GameManager.manager.optionList [GameManager.manager.optionIndex].optionSelected = 3;
@@ -88,7 +86,9 @@ public class OptionButtons : MonoBehaviour {
 			contactApp.GetComponent<ContactAppManager> ().rNum = optionNum;
 		}
 
-		contactApp.GetComponent<ContactAppManager> ().newResponse = true;
+        contactApp.GetComponent<ContactAppManager>().oneMsg = true;
+        contactApp.GetComponent<ContactAppManager>().twoMsg = true;
+        contactApp.GetComponent<ContactAppManager> ().newResponse = true;
 		GameManager.manager.optionIndex++;
 	}
 

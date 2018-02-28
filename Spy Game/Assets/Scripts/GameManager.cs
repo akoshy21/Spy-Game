@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour {
 	public float maintimes;
 
 	public List<Messages> msgs = new List<Messages>();
-	public String[] responses;
 
 	public GameObject contactButton;
 
@@ -26,9 +25,9 @@ public class GameManager : MonoBehaviour {
 
 	public string handlerName = "X";
 
-	// pregabs
+    public int r = 0;
 
-	private IEnumerator coroutine;
+    private IEnumerator coroutine;
 
 	public List<Options> optionList = new List<Options>();
 	public int optionIndex = 0;
@@ -129,13 +128,7 @@ public class GameManager : MonoBehaviour {
 		playerName = value.ToUpper ();
 	}
 
-	public void InstantiateResponses()
-	{
-		responses = new string[10];
 
-		responses [0] = "The important thing now is that we're calling you in.";
-		
-	}
 
 	IEnumerator MessageAlert()
 	{
