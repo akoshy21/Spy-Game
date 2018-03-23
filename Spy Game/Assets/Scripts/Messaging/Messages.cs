@@ -25,6 +25,10 @@ public class Messages {
 
 		sndrText.text = senderName;
 		msgText.text = message;
+		/*if (player != true) {
+			AudioClip beep = GameManager.manager.msgSound;
+			GameManager.manager.GetComponent<AudioSource> ().PlayOneShot (beep, 0.4F);
+		}*/
 
 		Object.Instantiate (msgBox, windowBG.transform);
 	

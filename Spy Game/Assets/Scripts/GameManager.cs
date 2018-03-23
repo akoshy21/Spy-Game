@@ -15,15 +15,20 @@ public class GameManager : MonoBehaviour {
 	public float maintimes;
 
 	public List<Messages> msgs = new List<Messages>();
+	public List<Messages> suspect = new List<Messages> ();
 
 	public GameObject contactButton;
 	public GameObject contactNotif;
+
+	public GameObject suspectButton;
+	public GameObject suspectNotif;
 
 	// see if the contact/message app has started up yet.
 	public bool contactStartup = false;
 
 	// see if there's a new message
-	public bool newMessage = true;
+	public bool newMessageHandler = true;
+	public bool newMessageSuspect = false;
 
 	public string handlerName = "X";
 
@@ -40,6 +45,8 @@ public class GameManager : MonoBehaviour {
 
 	public float boxHeight;
 	// Use this for initialization
+
+	public AudioClip msgSound;
 
 	void Awake () {
 		// set up the game manager
@@ -71,6 +78,9 @@ public class GameManager : MonoBehaviour {
 		if (checkIfLoaded ("MainGame") == true) {
 			contactButton = GameObject.FindGameObjectWithTag ("contactbutton");
 			contactNotif = GameObject.FindGameObjectWithTag ("msgNotif");
+
+			suspectButton = GameObject.FindGameObjectWithTag ("suspectbutton");
+			suspectNotif = GameObject.FindGameObjectWithTag ("suspectNotif");
 
 			MessageAlert ();
 		}
@@ -133,12 +143,21 @@ public class GameManager : MonoBehaviour {
 	public void MessageAlert()
 	{
 		Debug.Log("HI");
-		if (newMessage == true && checkIfLoaded ("Messenger") == false) {
+		if (newMessageHandler == true && checkIfLoaded ("Messenger") == false) {
 			contactNotif.SetActive (true);
 		}
 		else
 		{
 			contactNotif.SetActive (false);
+			Debug.Log ("Beep");
+		}
+
+		if (newMessageSuspect == true && checkIfLoaded ("Suspect") == false) {
+			suspectNotif.SetActive (true);
+		}
+		else
+		{
+			suspectNotif.SetActive (false);
 			Debug.Log ("Beep");
 		}
 	}

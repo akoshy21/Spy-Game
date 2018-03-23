@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 956065899}
   m_Layer: 5
   m_Name: PTwoNotif
-  m_TagString: msgNotif
+  m_TagString: suspectNotif
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -686,7 +686,7 @@ GameObject:
   - component: {fileID: 1518506921}
   m_Layer: 5
   m_Name: PTwoButton
-  m_TagString: Untagged
+  m_TagString: suspectbutton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -720,7 +720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 658028be3df0fa74cbbc44d1be598eaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonApp: PersonTwo
+  buttonApp: Suspect
   open: 0
 --- !u!114 &1518506922
 MonoBehaviour:
@@ -786,7 +786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.8897059, b: 0.9122059, a: 1}
+  m_Color: {r: 0.9558824, g: 0.9442489, b: 0.53416955, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

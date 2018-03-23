@@ -11,6 +11,8 @@ TagManager:
   - contactbutton
   - option
   - msgNotif
+  - suspectbutton
+  - suspectNotif
   layers:
   - Default
   - TransparentFX
