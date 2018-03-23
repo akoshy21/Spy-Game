@@ -38,6 +38,7 @@ public class ContactAppManager : MonoBehaviour {
 
 		GameManager.manager.newMessage = false;
 
+
 		InitializeOptions ();
         InitializeResponses();
 

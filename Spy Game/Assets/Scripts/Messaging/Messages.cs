@@ -17,7 +17,7 @@ public class Messages {
 	private GameObject windowBG = GameObject.FindWithTag ("windowbg");
 
 	private Color npcColor = new Color(0.5f, 0.5f, 0.5f);
-	private Color playerColor = new Color (1, 1, 1);
+	private Color playerColor = new Color (0.675f, 0.675f, 0.675f);
 
 	public Messages(string sndrName, string msg, Text sndrText, Text msgText, Image msgBox, bool player)
 	{

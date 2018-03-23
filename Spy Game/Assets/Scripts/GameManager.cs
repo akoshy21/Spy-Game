@@ -6,6 +6,7 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour {
 
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour {
 	public List<Messages> msgs = new List<Messages>();
 
 	public GameObject contactButton;
+	public GameObject contactNotif;
 
 	// see if the contact/message app has started up yet.
 	public bool contactStartup = false;
@@ -66,17 +68,15 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Update () {
-		/*if (newMessage == true)
-		{
-			coroutine = MessageAlert ();
-			StartCoroutine(coroutine);
-			Debug.Log ("toot");
-		}*/
-
-		if(checkIfLoaded("MainGame") == true)
-		{
+		if (checkIfLoaded ("MainGame") == true) {
 			contactButton = GameObject.FindGameObjectWithTag ("contactbutton");
+			contactNotif = GameObject.FindGameObjectWithTag ("msgNotif");
+
+			MessageAlert ();
 		}
+
+		Debug.Log (EventSystem.current);
+			
 	}
 		
 	void OnDisable()
@@ -116,10 +116,10 @@ public class GameManager : MonoBehaviour {
 			var scene = UnityEditor.SceneManagement.EditorSceneManager.GetSceneAt(i);
 
 			if(scene.name == sceneName) {
-				return true;//the scene is already loaded
+				return true; //the scene is already loaded
 			}
 		}
-		//scene not currently loaded in the hierarchy:
+		//scene not currently loaded
 		return false;
 	}
 
@@ -130,16 +130,16 @@ public class GameManager : MonoBehaviour {
 
 
 
-	IEnumerator MessageAlert()
+	public void MessageAlert()
 	{
-		if(checkIfLoaded("Messenger") == false)
+		Debug.Log("HI");
+		if (newMessage == true && checkIfLoaded ("Messenger") == false) {
+			contactNotif.SetActive (true);
+		}
+		else
 		{
-			yield return new WaitForSeconds(1);
-			Color originalColor = contactButton.GetComponent<Image> ().color;
-			contactButton.GetComponent<Image> ().color = Color.white;
-			Debug.Log ("HOWDY");
-			yield return new WaitForSeconds(0.5f);
-			contactButton.GetComponent<Image> ().color = originalColor;
+			contactNotif.SetActive (false);
+			Debug.Log ("Beep");
 		}
 	}
 

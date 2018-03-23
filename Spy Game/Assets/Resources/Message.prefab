@@ -94,7 +94,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 3.552335
+  m_Text: Look, Player, there's a lot going on right now, and you won't be able to
+    know most of what's going on. But just understand we need you. Of course, if that's
+    too much, feel free to just log off right now.
 --- !u!114 &114661273644449074
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,7 +129,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: hi
+  m_Text: X
 --- !u!114 &114708610826438592
 MonoBehaviour:
   m_ObjectHideFlags: 1

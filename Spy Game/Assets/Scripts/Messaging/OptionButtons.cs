@@ -90,6 +90,7 @@ public class OptionButtons : MonoBehaviour {
         contactApp.GetComponent<ContactAppManager>().twoMsg = true;
         contactApp.GetComponent<ContactAppManager> ().newResponse = true;
 		GameManager.manager.optionIndex++;
-	}
 
+		EventSystem.current.SetSelectedGameObject (null);
+	}
 }
