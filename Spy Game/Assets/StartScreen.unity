@@ -135,7 +135,7 @@ RectTransform:
   m_GameObject: {fileID: 25701189}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7934349, y: 1.7934351, z: 1.7934351}
   m_Children: []
   m_Father: {fileID: 1570690227}
   m_RootOrder: 0
@@ -848,8 +848,11 @@ MonoBehaviour:
   maintimes: 0
   contactButton: {fileID: 0}
   contactNotif: {fileID: 0}
+  suspectButton: {fileID: 0}
+  suspectNotif: {fileID: 0}
   contactStartup: 0
-  newMessage: 1
+  newMessageHandler: 1
+  newMessageSuspect: 0
   handlerName: Agent 19
   r: 0
   optionIndex: 0
