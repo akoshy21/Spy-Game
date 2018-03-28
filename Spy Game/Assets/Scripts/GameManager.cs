@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour {
 	public bool newMessageHandler = true;
 	public bool newMessageSuspect = false;
 
+	public bool reinit = false;
+
 	public string handlerName = "X";
 
     public int r = 0;
@@ -47,6 +49,14 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 
 	public AudioClip msgSound;
+	public AudioClip click;
+
+	public Sprite handlerIcon;
+	public Sprite suspectIcon;
+	public Sprite playerIcon;
+
+	public Color handlerColor = new Color(0.04f, 0.18f, 0.39f);
+	public Color suspectColor = new Color(0.99f, 0f, 0.87f);
 
 	void Awake () {
 		// set up the game manager
@@ -84,6 +94,8 @@ public class GameManager : MonoBehaviour {
 
 			MessageAlert ();
 		}
+
+		CheckForClicks ();
 
 		Debug.Log (EventSystem.current);
 			
@@ -135,7 +147,7 @@ public class GameManager : MonoBehaviour {
 
 	public void OnString_PlayerName(string value)
 	{
-		playerName = value.ToUpper ();
+		playerName = value;
 	}
 
 
@@ -159,6 +171,15 @@ public class GameManager : MonoBehaviour {
 		{
 			suspectNotif.SetActive (false);
 			Debug.Log ("Beep");
+		}
+	}
+
+	public void CheckForClicks()
+	{
+		if (Input.GetMouseButtonDown (0) || Input.GetMouseButtonDown (1) || Input.GetMouseButtonDown (2)) {
+			AudioSource audiosource = this.GetComponent<AudioSource> ();
+			audiosource.PlayOneShot (click);
+			Debug.Log ("BooP");
 		}
 	}
 

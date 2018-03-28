@@ -86,6 +86,8 @@ public class OptionButtons : MonoBehaviour {
 			contactApp.GetComponent<ContactAppManager> ().rNum = optionNum;
 		}
 
+		contactApp.GetComponent<AudioSource> ().Play ();
+
         contactApp.GetComponent<ContactAppManager>().oneMsg = true;
         contactApp.GetComponent<ContactAppManager>().twoMsg = true;
         contactApp.GetComponent<ContactAppManager> ().newResponse = true;

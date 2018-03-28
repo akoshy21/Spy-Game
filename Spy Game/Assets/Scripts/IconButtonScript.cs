@@ -17,6 +17,11 @@ public class IconButtonScript : MonoBehaviour {
 		btn.onClick.AddListener (TaskOnClick);
 	}
 
+	void Update()
+	{
+		GameManager.manager.CheckForClicks ();
+	}
+
 	void TaskOnClick () {
 		if (GameManager.manager.checkIfLoaded(buttonApp) == false) {
 			unloadOtherScenes ();

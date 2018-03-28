@@ -26,6 +26,8 @@ public class ContactAppManager : MonoBehaviour {
     public bool oneMsg = true;
     public bool twoMsg = true;
 
+	public AudioClip keys;
+
     //	List<Messages> messages;
     //	GameObject[] boxes;
 
@@ -45,8 +47,10 @@ public class ContactAppManager : MonoBehaviour {
 		// add previous messages
 		foreach(Messages ms in GameManager.manager.msgs)
 		{
+			GameManager.manager.reinit = true;
 			new Messages (ms.senderName, ms.message, senderName, message, messageBox, ms.isPlayer);
 			Debug.Log (ms.isPlayer);
+			GameManager.manager.reinit = false;
 		}
 
 		if (GameManager.manager.contactStartup == false)
@@ -59,6 +63,9 @@ public class ContactAppManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
+		GameManager.manager.CheckForClicks ();
+
 		if (Input.GetKeyDown ("space"))
 		{
 			GameManager.manager.msgs.Add( new Messages("hi", Time.time.ToString(), senderName, message, messageBox, false));
@@ -92,7 +99,7 @@ public class ContactAppManager : MonoBehaviour {
 
         responses[0] = "To cut a long story short, you're an agent for our organization; one whose skills we require.";
         responses[1] = "Look, " + GameManager.manager.playerName + ", there's a lot going on right now, and you won't be able to know most of what's going on. But just understand we need you. Of course, if that's too much, feel free to just log off right now.";
-		responses[2] = "Moreover, we need to get to the point. If you notice, there's a couple additional people with whom you'll be able to speak to.fne" + GameManager.manager.playerName + ", there's a lot going on right now, and you won't be able to know most of what's going on. But just understand we need you. Of course, if that's too much, feel free to just log off right now.";
+		responses [2] = "Moreover, we need to get to the point. If you notice, there's a new contact there. That's our suspect. We need you to get in close and communicate with them."; 
 
     }
 
