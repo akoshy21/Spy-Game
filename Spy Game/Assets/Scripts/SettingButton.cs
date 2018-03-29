@@ -5,11 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class IconButtonScript : MonoBehaviour {
+public class SettingButton : MonoBehaviour {
 
 	public string buttonApp;
-
-	public bool open = false;
 
 	// Use this for initialization
 	void Start () {
@@ -17,36 +15,13 @@ public class IconButtonScript : MonoBehaviour {
 		btn.onClick.AddListener (TaskOnClick);
 	}
 
-	void Update()
-	{
-		GameManager.manager.CheckForClicks ();
-	}
-
 	void TaskOnClick () {
 		if (GameManager.manager.checkIfLoaded(buttonApp) == false) {
-			unloadOtherScenes ();
 			SceneManager.LoadScene (buttonApp, LoadSceneMode.Additive);
-			open = true;
 		}
 		else if (GameManager.manager.checkIfLoaded(buttonApp) == true)
 		{
 			SceneManager.UnloadSceneAsync (buttonApp);
-			open = false;
 		}
 		EventSystem.current.SetSelectedGameObject (null);
 	}
-
-	void unloadOtherScenes()
-	{
-		int c = SceneManager.sceneCount;
-		for (int i = 0; i < c; i++)
-		{
-			Scene scene = SceneManager.GetSceneAt (i);
-
-			if (scene.name != "MainGame" && scene.name != buttonApp)
-			{
-				SceneManager.UnloadSceneAsync (scene);
-			}
-		}
-	}
-}
