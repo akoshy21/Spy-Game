@@ -176,6 +176,7 @@ public class GameManager : MonoBehaviour {
 
 	public void CheckForClicks()
 	{
+		Debug.Log ("CHECKING FOR CLICKS");
 		if (Input.GetMouseButtonDown (0) || Input.GetMouseButtonDown (1) || Input.GetMouseButtonDown (2)) {
 			AudioSource audiosource = this.GetComponent<AudioSource> ();
 			audiosource.PlayOneShot (click);

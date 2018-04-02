@@ -25,3 +25,5 @@ public class SettingButton : MonoBehaviour {
 		}
 		EventSystem.current.SetSelectedGameObject (null);
 	}
+
+}
