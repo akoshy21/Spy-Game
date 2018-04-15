@@ -14,10 +14,9 @@ public class ContactAppManager : MonoBehaviour {
 	public Image messageBox;
 
 	public GameObject windowbg; 
+	public GameObject responding;
 
 	public bool newResponse = false;
-
-    public string[] responses;
 
     public int rNum;
 
@@ -28,6 +27,9 @@ public class ContactAppManager : MonoBehaviour {
 
 	public AudioClip keys;
 
+	bool handlerLoaded;
+	bool suspectLoaded;
+
     //	List<Messages> messages;
     //	GameObject[] boxes;
 
@@ -36,42 +38,77 @@ public class ContactAppManager : MonoBehaviour {
     // Use this for initialization
     void OnEnable () {
 
+		handlerLoaded = GameManager.manager.checkIfLoaded ("Messenger");
+		suspectLoaded = GameManager.manager.checkIfLoaded ("Suspect");
+
+		// Debug.Log (handlerLoaded);
+
 		windowbg = GameObject.FindGameObjectWithTag ("windowbg"); 
 
-		GameManager.manager.newMessageHandler = false;
-
-
-		InitializeOptions ();
-        InitializeResponses();
-
-		// add previous messages
-		foreach(Messages ms in GameManager.manager.msgs)
+		if (handlerLoaded)
 		{
-			GameManager.manager.reinit = true;
-			new Messages (ms.senderName, ms.message, senderName, message, messageBox, ms.isPlayer);
-			Debug.Log (ms.isPlayer);
-			GameManager.manager.reinit = false;
+			// Debug.Log ("HANDLER IS LOADED");
+			GameManager.manager.newMessageHandler = false;
+
+			Handler.handler.InitializeOptions ();
+			Handler.handler.InitializeResponses();
+
+			// add previous messages
+			foreach(Messages ms in GameManager.manager.msgs)
+			{
+				GameManager.manager.reinit = true;
+				new Messages (ms.senderName, ms.message, senderName, message, messageBox, ms.isPlayer);
+				// Debug.Log (ms.isPlayer);
+				GameManager.manager.reinit = false;
+			}
+
+			if (GameManager.manager.contactStartup == false)
+			{
+				GameManager.manager.msgs.Add(new Messages(GameManager.manager.handlerName, "Hello. \nI'm sure this must be a bit confusing, but we need your help, and there isn't much time to explain.", senderName, message, messageBox, false));
+				GameManager.manager.contactStartup = true;
+			}
 		}
+		else if (suspectLoaded) {
+			GameManager.manager.newMessageSuspect = false;
 
-		if (GameManager.manager.contactStartup == false)
-		{
-			//new Messages (handlerName, "Hello Agent. It's been a while. Welcome to the world.", false);
-			GameManager.manager.msgs.Add(new Messages(GameManager.manager.handlerName, "Hello. \nI'm sure this must be a bit confusing, but we need your help, and there isn't much time to explain.", senderName, message, messageBox, false));
-			GameManager.manager.contactStartup = true;
+			Suspect.suspect.InitializeOptions ();
+			Suspect.suspect.InitializeResponses();
+
+			// add previous messages
+			foreach(Messages ms in GameManager.manager.suspect)
+			{
+				GameManager.manager.reinit = true;
+				new Messages (ms.senderName, ms.message, senderName, message, messageBox, ms.isPlayer);
+				// Debug.Log (ms.isPlayer);
+				GameManager.manager.reinit = false;
+			}
+
+			if (GameManager.manager.suspectStartup == false)
+			{
+				GameManager.manager.suspect.Add(new Messages(GameManager.manager.suspectName, "Hey! It's been a while. How's it going?", senderName, message, messageBox, false));
+				GameManager.manager.suspectStartup = true;
+			}
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		// Debug.Log(GameManager.manager.checkIfLoaded ("Messenger"));
 		GameManager.manager.CheckForClicks ();
 
 		if (Input.GetKeyDown ("space"))
 		{
-			GameManager.manager.msgs.Add( new Messages("hi", Time.time.ToString(), senderName, message, messageBox, false));
+			if (handlerLoaded) 
+			{
+				GameManager.manager.msgs.Add (new Messages ("hi", Time.time.ToString (), senderName, message, messageBox, false));
+			}
+			else if(suspectLoaded)
+			{
+				GameManager.manager.suspect.Add (new Messages ("hi", Time.time.ToString (), senderName, message, messageBox, false));
+			}
 		}
 			
-        Debug.Log(newResponse);
+        // Debug.Log(newResponse);
 
 		if (newResponse == true)
 		{
@@ -84,24 +121,7 @@ public class ContactAppManager : MonoBehaviour {
 	{
 	}
 
-	public void InitializeOptions()
-	{
-		GameManager.manager.optionList.Add (new Options ("Who are you?", "What is this?", "Help with what?", "It doesn't matter right now. We have a problem. We're calling you in. ", "There's a lot to explain, and not much time. For now, just know that we need your help.", "Let me take a moment to explain.", 0, 0, 0));
-		GameManager.manager.optionList.Add (new Options ("Agent? I'm not an agent.", "I think you're mistaken.", "What organization?", "Yes. You are.", "I'm not.", "I'm not at liberty to discuss that right now.", 0, 0, -1));
-		GameManager.manager.optionList.Add (new Options ("You're telling me that I'm a spy. I think I'd know if I were a spy.", "What can I even do for you?", "You're crazy.","You would be surprised how many spies don't know they're spies.", "Many things, but right now, your location is of particular use to us.", "I assure you, there is nothing wrong with my mental health.", 0, 0, -1));
-        GameManager.manager.optionList.Add(new Options("You're telling me that I'm a spy. I think I'd know if I were a spy.", "What can I even do for you?", "You're crazy.", "You would be surprised how many spy's don't know they're spies.", "Many things, but right now, your location is of particular use to us.", "I assure you, there is nothing wrong with my mental health.", 0, 0, -1));
 
-    }
-
-    public void InitializeResponses()
-    {
-        responses = new string[10];
-
-        responses[0] = "To cut a long story short, you're an agent for our organization; one whose skills we require.";
-        responses[1] = "Look, " + GameManager.manager.playerName + ", there's a lot going on right now, and you won't be able to know most of what's going on. But just understand we need you. Of course, if that's too much, feel free to just log off right now.";
-		responses [2] = "Moreover, we need to get to the point. If you notice, there's a new contact there. That's our suspect. We need you to get in close and communicate with them."; 
-
-    }
 
     public IEnumerator AddResponse(int responseNum)
     {
@@ -112,31 +132,37 @@ public class ContactAppManager : MonoBehaviour {
             optionbuttons[i].SetActive(false);
         }
 
-        yield return new WaitForSeconds(1);
+		if(handlerLoaded)
+		{
+			responding.GetComponentInChildren<Text>().text = GameManager.manager.handlerName + " is replying...";
+		}
+		else if(suspectLoaded)
+		{
+			responding.GetComponentInChildren<Text>().text = GameManager.manager.suspectName + " is replying...";
+		}
+
+		responding.gameObject.SetActive (true);
+
+		yield return new WaitForSeconds(Random.Range(1.0f, 1.5f));
         if (oneMsg == true)
         {
-            if (responseNum == 1)
-            {
-                GameManager.manager.msgs.Add(new Messages(GameManager.manager.handlerName, GameManager.manager.optionList[GameManager.manager.optionIndex - 1].responseOne, senderName, message, messageBox, false));
-                oneMsg = false;
-            }
-            else if (responseNum == 2)
-            {
-                GameManager.manager.msgs.Add(new Messages(GameManager.manager.handlerName, GameManager.manager.optionList[GameManager.manager.optionIndex - 1].responseTwo, senderName, message, messageBox, false));
-                oneMsg = false;
-            }
-            else if (responseNum == 3)
-            {
-                GameManager.manager.msgs.Add(new Messages(GameManager.manager.handlerName, GameManager.manager.optionList[GameManager.manager.optionIndex - 1].responseThree, senderName, message, messageBox, false));
-                oneMsg = false;
-            }
+			respond (responseNum);
+			twoMsg = true;
         }
 
-        yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(Random.Range(1.5f, 2.0f));
+		responding.gameObject.SetActive (false);
         if (twoMsg == true)
         {
-            GameManager.manager.msgs.Add(new Messages(GameManager.manager.handlerName, responses[GameManager.manager.r], senderName, message, messageBox, false));
-            GameManager.manager.r++;
+			if (handlerLoaded) {
+				GameManager.manager.msgs.Add (new Messages (GameManager.manager.handlerName, Handler.handler.responses [GameManager.manager.handlerR], senderName, message, messageBox, false));
+				GameManager.manager.handlerR++;
+			}
+			if (suspectLoaded) {
+				GameManager.manager.suspect.Add (new Messages (GameManager.manager.suspectName, Suspect.suspect.responses [GameManager.manager.suspectR], senderName, message, messageBox, false));
+				GameManager.manager.suspectR++;
+			}
+
             twoMsg = false;
         }
 		yield return new WaitForSeconds (0.5f);
@@ -145,6 +171,45 @@ public class ContactAppManager : MonoBehaviour {
             optionbuttons[i].SetActive(true);
         }
 		newResponse = false;
+	
 	}
 
+	public 
+
+	void respond(int num)
+	{
+		if (handlerLoaded) {	
+			if (num == 1) {
+				GameManager.manager.msgs.Add (new Messages (GameManager.manager.handlerName, GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex - 1].responseOne, senderName, message, messageBox, false));
+				oneMsg = false;
+			} else if (num == 2) {
+				GameManager.manager.msgs.Add (new Messages (GameManager.manager.handlerName, GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex - 1].responseTwo, senderName, message, messageBox, false));
+				oneMsg = false;
+			} else if (num == 3) {
+				GameManager.manager.msgs.Add (new Messages (GameManager.manager.handlerName, GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex - 1].responseThree, senderName, message, messageBox, false));
+				oneMsg = false;
+			}
+		}
+		if (suspectLoaded) {
+			if (num == 1) {
+				GameManager.manager.suspect.Add (new Messages (
+					GameManager.manager.suspectName, 
+					GameManager.manager.suspectOptionList [GameManager.manager.suspectOptionIndex - 1].responseOne, 
+					senderName, message, messageBox, false));
+				oneMsg = false;
+			} else if (num == 2) {
+				GameManager.manager.suspect.Add (new Messages (
+					GameManager.manager.suspectName, 
+					GameManager.manager.suspectOptionList [GameManager.manager.suspectOptionIndex - 1].responseTwo, 
+					senderName, message, messageBox, false));
+				oneMsg = false;
+			} else if (num == 3) {
+				GameManager.manager.suspect.Add (new Messages (
+					GameManager.manager.suspectName, 
+					GameManager.manager.suspectOptionList [GameManager.manager.suspectOptionIndex - 1].responseThree, 
+					senderName, message, messageBox, false));
+				oneMsg = false;
+			}
+		}
+	}
 }

@@ -135,17 +135,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 670166802}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 884329920}
-  m_RootOrder: 1
+  m_Father: {fileID: 1666641779}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175.8, y: 86.54}
-  m_SizeDelta: {x: 10.29, y: 9.19}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -5.649994, y: -6.459999}
+  m_SizeDelta: {x: 10.289993, y: 9.190002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &670166804
 MonoBehaviour:
@@ -232,8 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01cde068aaae584ba389e5266fd9442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonApp: 
-  open: 0
+  buttonApp: OptionsMenu
 --- !u!1 &779371006
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,7 +355,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 0.00925}
   m_Children:
   - {fileID: 1666641779}
-  - {fileID: 670166803}
   m_Father: {fileID: 779371010}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -424,7 +422,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 670166803}
   m_Father: {fileID: 884329920}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -25,25 +25,35 @@ public class GameManager : MonoBehaviour {
 
 	// see if the contact/message app has started up yet.
 	public bool contactStartup = false;
+	public bool suspectStartup = false;
 
 	// see if there's a new message
 	public bool newMessageHandler = true;
 	public bool newMessageSuspect = false;
 
+	public bool handlerPause = false;
+	public bool suspectPause = false;
 	public bool reinit = false;
 
 	public string handlerName = "X";
+	public string suspectName = "Gid";
 
-    public int r = 0;
+    public int handlerR = 0;
+	public int suspectR = 0;
 
     private IEnumerator coroutine;
 
-	public List<Options> optionList = new List<Options>();
-	public int optionIndex = 0;
+	public List<Options> handlerOptionList = new List<Options>();
+	public int handlerOptionIndex = 0;
+
+	public List<Options> suspectOptionList = new List<Options>();
+	public int suspectOptionIndex = 0;
 
 	public int personality;
 
 	public string playerName;
+	public string sigOtherName;
+	public bool sigFemale;
 
 	public float boxHeight;
 	// Use this for initialization
@@ -74,9 +84,13 @@ public class GameManager : MonoBehaviour {
 	void OnEnable()
 	{
 		Load ();
-		Debug.Log("HI");
-		Debug.Log (maintimes);
+//		Debug.Log("HI");
+//		Debug.Log (maintimes);
 		maintimes++;
+
+		sigOtherName = SignificantOther ();
+		Debug.Log (sigOtherName);
+
 	}
 
 	void Start()
@@ -97,7 +111,7 @@ public class GameManager : MonoBehaviour {
 
 		CheckForClicks ();
 
-		Debug.Log (EventSystem.current);
+		//Debug.Log (EventSystem.current);
 			
 	}
 		
@@ -154,36 +168,73 @@ public class GameManager : MonoBehaviour {
 
 	public void MessageAlert()
 	{
-		Debug.Log("HI");
+		// Debug.Log("HI");
 		if (newMessageHandler == true && checkIfLoaded ("Messenger") == false) {
 			contactNotif.SetActive (true);
 		}
-		else
+		else if(checkIfLoaded("Messenger"))
 		{
 			contactNotif.SetActive (false);
-			Debug.Log ("Beep");
+			//Debug.Log ("Beep");
 		}
 
 		if (newMessageSuspect == true && checkIfLoaded ("Suspect") == false) {
 			suspectNotif.SetActive (true);
 		}
-		else
+		else if(checkIfLoaded("Suspect"))
 		{
 			suspectNotif.SetActive (false);
-			Debug.Log ("Beep");
+			//Debug.Log ("Beep");
 		}
 	}
 
 	public void CheckForClicks()
 	{
-		Debug.Log ("CHECKING FOR CLICKS");
 		if (Input.GetMouseButtonDown (0) || Input.GetMouseButtonDown (1) || Input.GetMouseButtonDown (2)) {
 			AudioSource audiosource = this.GetComponent<AudioSource> ();
 			audiosource.PlayOneShot (click);
-			Debug.Log ("BooP");
+			// Debug.Log ("BooP");
 		}
 	}
 
+	public string SignificantOther()
+	{
+		int sig;
+		sig = UnityEngine.Random.Range (0,10);
+
+		switch (sig) {
+		case 1:
+			sigFemale = true;
+			return "Virginia";
+		case 2:
+			sigFemale = false;
+			return "Harold";
+		case 3:
+			sigFemale = true;
+			return "Susan";
+		case 4:
+			sigFemale = false;
+			return "James";
+		case 5:
+			sigFemale = true;
+			return "Louise";
+		case 6:
+			sigFemale = false;
+			return "Ryan";
+		case 7:
+			sigFemale = false;
+			return "Bart";
+		case 8:
+			sigFemale = true;
+			return "Jenna";
+		case 9:
+			sigFemale = false;
+			return "Lorenzo";
+		default:
+			sigFemale = true;
+			return "Elsie";
+		}
+	}
 }
 
 [Serializable]

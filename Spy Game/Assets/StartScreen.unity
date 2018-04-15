@@ -826,6 +826,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1439639245}
   - component: {fileID: 1439639244}
+  - component: {fileID: 1439639248}
+  - component: {fileID: 1439639247}
   - component: {fileID: 1439639246}
   m_Layer: 0
   m_Name: GameManager
@@ -851,14 +853,22 @@ MonoBehaviour:
   suspectButton: {fileID: 0}
   suspectNotif: {fileID: 0}
   contactStartup: 0
+  suspectStartup: 0
   newMessageHandler: 1
   newMessageSuspect: 0
+  handlerPause: 0
+  suspectPause: 0
   reinit: 0
   handlerName: Agent 19
-  r: 0
-  optionIndex: 0
+  suspectName: Gid
+  handlerR: 0
+  suspectR: 0
+  handlerOptionIndex: 0
+  suspectOptionIndex: 0
   personality: 0
   playerName: Player
+  sigOtherName: 
+  sigFemale: 0
   boxHeight: 0
   msgSound: {fileID: 8300000, guid: e970d2dcb4034ed44a19d6e78bf87d15, type: 3}
   click: {fileID: 8300000, guid: 88978c3f92813094f81ef24debe41919, type: 3}
@@ -960,6 +970,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1439639247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1439639243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2293d9e5f0f711041ba6bdddb92f8652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  responses: []
+--- !u!114 &1439639248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1439639243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7f536bfe2e9b9b499499bdc3639edf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  responses: []
 --- !u!1 &1459158716
 GameObject:
   m_ObjectHideFlags: 0
