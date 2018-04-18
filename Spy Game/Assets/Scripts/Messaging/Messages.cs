@@ -13,25 +13,30 @@ public class Messages {
 	public Image msgBoxPrefab;
 	public bool isPlayer = false;
 	public Color boxColor;
+	public int decision;
 
 	public Sprite icon;
 
 	private GameObject windowBG = GameObject.FindWithTag ("windowbg");
 
-	public Messages(string sndrName, string msg, Text sndrText, Text msgText, Image msgBox, bool player)
+	public Messages(string sndrName, string msg, Text sndrText, Text msgText, Image msgBox, bool player, int d = 0)
 	{
 		isPlayer = player;
+
+		decision = d;
 
 		senderName = sndrName;
 		message = msg;
 
 		sndrText.text = senderName;
 		msgText.text = message;
+
 		if (player != true) {
 			if (GameManager.manager.reinit == false) {
 				AudioClip beep = GameManager.manager.msgSound;
 				GameManager.manager.GetComponent<AudioSource> ().PlayOneShot (beep, 0.4F);
 			}
+
 			if (GameManager.manager.checkIfLoaded ("Messenger") == true) {
 				sndrText.color = GameManager.manager.handlerColor;
 

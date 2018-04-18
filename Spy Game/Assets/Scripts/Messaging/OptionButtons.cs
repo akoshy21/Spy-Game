@@ -79,18 +79,17 @@ public class OptionButtons : MonoBehaviour {
 	{
 		if (GameManager.manager.checkIfLoaded ("Messenger")) {
 			if (optionNum == 1) {
-				GameManager.manager.msgs.Add (new Messages (GameManager.manager.playerName, GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].optionOne, senderName, message, messageBox, true));
+				GameManager.manager.msgs.Add (new Messages (GameManager.manager.playerName, GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].optionOne, senderName, message, messageBox, true, 1));
 				GameManager.manager.personality += GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].effectOne;
 			} else if (optionNum == 2) {
-				GameManager.manager.msgs.Add (new Messages (GameManager.manager.playerName, GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].optionTwo, senderName, message, messageBox, true));
+				GameManager.manager.msgs.Add (new Messages (GameManager.manager.playerName, GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].optionTwo, senderName, message, messageBox, true, 2));
 				GameManager.manager.personality += GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].effectTwo;
 			} else if (optionNum == 3) {
-				GameManager.manager.msgs.Add (new Messages (GameManager.manager.playerName, GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].optionThree, senderName, message, messageBox, true));
+				GameManager.manager.msgs.Add (new Messages (GameManager.manager.playerName, GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].optionThree, senderName, message, messageBox, true, 3));
 				GameManager.manager.personality += GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].effectThree;
 			}
 
 			contactApp.GetComponent<ContactAppManager>().oneMsg = true;
-			contactApp.GetComponent<ContactAppManager>().twoMsg = true;
 			contactApp.GetComponent<ContactAppManager> ().newResponse = true;
 			GameManager.manager.handlerOptionIndex++;
 		}
@@ -99,17 +98,17 @@ public class OptionButtons : MonoBehaviour {
 		if (GameManager.manager.checkIfLoaded ("Suspect")) {
 			if (optionNum == 1)
 			{
-				GameManager.manager.suspect.Add(new Messages(GameManager.manager.playerName, GameManager.manager.suspectOptionList[GameManager.manager.suspectOptionIndex].optionOne, senderName, message, messageBox, true));
+				GameManager.manager.suspect.Add(new Messages(GameManager.manager.playerName, GameManager.manager.suspectOptionList[GameManager.manager.suspectOptionIndex].optionOne, senderName, message, messageBox, true, 1));
 				GameManager.manager.personality += GameManager.manager.suspectOptionList [GameManager.manager.suspectOptionIndex].effectOne;
 			}
 			else if (optionNum == 2)
 			{
-				GameManager.manager.suspect.Add(new Messages(GameManager.manager.playerName, GameManager.manager.suspectOptionList[GameManager.manager.suspectOptionIndex].optionTwo, senderName, message, messageBox, true));
+				GameManager.manager.suspect.Add(new Messages(GameManager.manager.playerName, GameManager.manager.suspectOptionList[GameManager.manager.suspectOptionIndex].optionTwo, senderName, message, messageBox, true, 2));
 				GameManager.manager.personality += GameManager.manager.suspectOptionList [GameManager.manager.suspectOptionIndex].effectTwo;
 			}
 			else if (optionNum == 3)
 			{
-				GameManager.manager.suspect.Add(new Messages(GameManager.manager.playerName, GameManager.manager.suspectOptionList[GameManager.manager.suspectOptionIndex].optionThree, senderName, message, messageBox, true));
+				GameManager.manager.suspect.Add(new Messages(GameManager.manager.playerName, GameManager.manager.suspectOptionList[GameManager.manager.suspectOptionIndex].optionThree, senderName, message, messageBox, true, 3));
 				GameManager.manager.personality += GameManager.manager.suspectOptionList [GameManager.manager.suspectOptionIndex].effectThree;
 			}
 

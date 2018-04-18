@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
 
 	// see if the contact/message app has started up yet.
 	public bool contactStartup = false;
-	public bool suspectStartup = false;
+	public bool suspectStartup = true;
 
 	// see if there's a new message
 	public bool newMessageHandler = true;
@@ -54,6 +54,8 @@ public class GameManager : MonoBehaviour {
 	public string playerName;
 	public string sigOtherName;
 	public bool sigFemale;
+	public string sigHeShe;
+	public string sigHerHis;
 
 	public float boxHeight;
 	// Use this for initialization
@@ -89,6 +91,14 @@ public class GameManager : MonoBehaviour {
 		maintimes++;
 
 		sigOtherName = SignificantOther ();
+		if (sigFemale == true) {
+			sigHeShe = "she";
+			sigHerHis = "her";
+		}
+		else if (sigFemale == false) {
+			sigHeShe = "he";
+			sigHerHis = "his";
+		}
 		Debug.Log (sigOtherName);
 
 	}
@@ -99,15 +109,6 @@ public class GameManager : MonoBehaviour {
 	}
 
 	void Update () {
-		if (checkIfLoaded ("MainGame") == true) {
-			contactButton = GameObject.FindGameObjectWithTag ("contactbutton");
-			contactNotif = GameObject.FindGameObjectWithTag ("msgNotif");
-
-			suspectButton = GameObject.FindGameObjectWithTag ("suspectbutton");
-			suspectNotif = GameObject.FindGameObjectWithTag ("suspectNotif");
-
-			MessageAlert ();
-		}
 
 		CheckForClicks ();
 
@@ -220,7 +221,7 @@ public class GameManager : MonoBehaviour {
 			return "Louise";
 		case 6:
 			sigFemale = false;
-			return "Ryan";
+			return "Lou";
 		case 7:
 			sigFemale = false;
 			return "Bart";
