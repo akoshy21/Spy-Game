@@ -25,14 +25,14 @@ public class Suspect : MonoBehaviour {
 		GameManager.manager.suspectOptionList.Add (new Options ("The window.", "The vent.", "The doors.", "I successfully exited via the window, entering the building through the southern window, which had been left open by the target.", "Arrested", "arrested.", -1, -1, 1));
 		GameManager.manager.suspectOptionList.Add (new Options ("The curtains.", "The couch.", "The desk.", "Arrested", "Arrested", "Target has not noticed me.", -1, -1, 1));
 		GameManager.manager.suspectOptionList.Add (new Options ("The desk chair.", "The letter opener.", "Your gun.", "The target has been eliminated by the application of force to their frontal lobe, causing irreparable brain damage.", "The target's neck was severed just below the chin, resulting in a fatal loss of blood.", "Target has died due to ballistic trauma.", -1, -1, 1));
-		GameManager.manager.suspectOptionList.Add(new Options ("Initiate self destruct sequence.", "Run through the door.", "The window.", "Self destruct initiated.", "I am running...","I am climbing out the window.", -1, -1, 1));
+		GameManager.manager.suspectOptionList.Add (new Options ("Initiate self destruct sequence.", "Run through the door.", "The window.", "Self destruct initiated.", "I am running...","I am climbing out the window.", -1, -1, 1));
 
 		Debug.Log ("messages have been initialized.");
 	}
 
 	public void InitializeResponses()
 	{
-		responses = new string[10];
+		responses = new string[11];
 
 		responses [0] = "Are you my new operator?";
 		responses [1] = "Having checked the files and confirmed that you are indeed my new operator, please allow me to introduce myself. I am ROSE, the Robotic Operative for Safety and Espionage. Simply direct me via the messages.";

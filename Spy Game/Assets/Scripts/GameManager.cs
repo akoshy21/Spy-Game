@@ -109,6 +109,7 @@ public class GameManager : MonoBehaviour {
 		CheckForClicks ();
 
 		//Debug.Log (EventSystem.current);
+		//Debug.Log(suspect.Count);
 
 		if (personality < -15) {
 			EndGame ();

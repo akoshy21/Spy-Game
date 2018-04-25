@@ -28,8 +28,8 @@ public class ContactAppManager : MonoBehaviour {
 
 	public AudioClip keys;
 
-	bool handlerLoaded;
-	bool suspectLoaded;
+	public bool handlerLoaded;
+	public bool suspectLoaded;
 
 	bool pause;
 
@@ -54,7 +54,7 @@ public class ContactAppManager : MonoBehaviour {
 		// find and set windowbg to the right object
 		windowbg = GameObject.FindGameObjectWithTag ("windowbg"); 
 
-		if (handlerLoaded)
+		if (handlerLoaded == true)
 		{
 			// Debug.Log ("HANDLER IS LOADED");
 
@@ -82,7 +82,8 @@ public class ContactAppManager : MonoBehaviour {
 			}
 		}
 
-		else if (suspectLoaded) {
+		else if (suspectLoaded == true) {
+			Debug.Log ("BOOP");
 			GameManager.manager.newMessageSuspect = false;
 
 			Suspect.suspect.InitializeOptions ();
