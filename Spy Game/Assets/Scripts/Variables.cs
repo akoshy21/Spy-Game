@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Variables : MonoBehaviour {
 
-	// Use this for initialization
-	void OnEnable () {
-		GameManager.manager.contactButton = GameObject.FindGameObjectWithTag ("contactbutton");
-		GameManager.manager.contactNotif = GameObject.FindGameObjectWithTag ("msgNotif");
+	public GameObject handlerButton;
+	public GameObject handlerNotif;
 
-		GameManager.manager.suspectButton = GameObject.FindGameObjectWithTag ("suspectbutton");
-		GameManager.manager.suspectNotif = GameObject.FindGameObjectWithTag ("suspectNotif");
+	public GameObject suspectButton;
+	public GameObject suspectNotif;
+
+
+	public static Variables variable;
+
+	void Awake()
+	{
+		variable = this;
 	}
 	
 	// Update is called once per frame

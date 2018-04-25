@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 1439639246}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -848,10 +848,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maintimes: 0
-  contactButton: {fileID: 0}
-  contactNotif: {fileID: 0}
-  suspectButton: {fileID: 0}
-  suspectNotif: {fileID: 0}
   contactStartup: 0
   suspectStartup: 0
   newMessageHandler: 1
@@ -860,7 +856,7 @@ MonoBehaviour:
   suspectPause: 0
   reinit: 0
   handlerName: Agent 19
-  suspectName: Gid
+  suspectName: Rose
   handlerR: 0
   suspectR: 0
   handlerOptionIndex: 0
@@ -869,6 +865,8 @@ MonoBehaviour:
   playerName: Player
   sigOtherName: 
   sigFemale: 0
+  sigHeShe: 
+  sigHerHis: 
   boxHeight: 0
   msgSound: {fileID: 8300000, guid: e970d2dcb4034ed44a19d6e78bf87d15, type: 3}
   click: {fileID: 8300000, guid: 88978c3f92813094f81ef24debe41919, type: 3}

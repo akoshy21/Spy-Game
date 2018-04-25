@@ -17,6 +17,7 @@ public class ContactAppManager : MonoBehaviour {
 	public GameObject responding;
 
 	public bool newResponse = false;
+	public bool newResponseTwo = false;
 
     public int rNum;
 
@@ -30,6 +31,11 @@ public class ContactAppManager : MonoBehaviour {
 	bool handlerLoaded;
 	bool suspectLoaded;
 
+	bool pause;
+
+	public bool optionsOn = true;
+
+	public GameObject[] optionbuttons;
 
     //	List<Messages> messages;
     //	GameObject[] boxes;
@@ -91,6 +97,9 @@ public class ContactAppManager : MonoBehaviour {
 				GameManager.manager.reinit = false;
 			}
 		}
+
+		optionbuttons = GameObject.FindGameObjectsWithTag("option");
+
 	}
 	
 	// Update is called once per frame
@@ -112,18 +121,85 @@ public class ContactAppManager : MonoBehaviour {
 				GameManager.manager.suspect.Add (new Messages ("hi", Time.time.ToString (), senderName, message, messageBox, false));
 			}
 		}
+
+		if (handlerLoaded) 
+		{
+			pause = GameManager.manager.handlerPause;
+		}
+		else if(suspectLoaded)
+		{
+			pause = GameManager.manager.suspectPause;
+		}
 			
         // Debug.Log(newResponse);
 
 		// add response if newresponse == true
-		if (newResponse == true)
+
+		if (newResponse == true && pause != true)
 		{
 			coroutine = AddResponse (rNum);
             StartCoroutine(coroutine);
 		}
 
-		if (Handler.handler.responses.Length > 3) {
-			GameManager.manager.suspectButton.SetActive (true);
+		if (GameManager.manager.handlerR > 2) {
+			//Debug.Log ("We're big now");
+			Variables.variable.suspectButton.SetActive (true);
+		}
+
+		if (GameManager.manager.msgs.Count >= 27) {
+			Debug.Log ("he");
+			GameManager.manager.end = 12;
+			GameManager.manager.handlerPause = true;
+			StartCoroutine (GameManager.manager.EndGame ());
+		}
+		else if (GameManager.manager.suspect [0].decision == 3) {
+			Debug.Log ("BEEP");
+			GameManager.manager.end = 1;
+			StartCoroutine (GameManager.manager.EndGame ());
+		} else if (GameManager.manager.suspect [12].decision == 3) {
+			Debug.Log ("BEEP");
+			GameManager.manager.end = 2;
+			StartCoroutine (GameManager.manager.EndGame ());
+		} else if (GameManager.manager.suspect [15].decision == 1) {
+			Debug.Log ("BEEP");
+			GameManager.manager.end = 3;
+			StartCoroutine (GameManager.manager.EndGame ());
+		} else if (GameManager.manager.suspect [18].decision == 3 || GameManager.manager.suspect [18].decision == 2) {
+			Debug.Log ("BEEP");
+			GameManager.manager.end = 4;
+			StartCoroutine (GameManager.manager.EndGame ());
+		} else if (GameManager.manager.suspect [21].decision == 3 || GameManager.manager.suspect [21].decision == 2) {
+			Debug.Log ("BEEP");
+			GameManager.manager.end = 5;
+			StartCoroutine (GameManager.manager.EndGame ());
+		} else if (GameManager.manager.suspect [24].decision == 1 || GameManager.manager.suspect [24].decision == 2) {
+			Debug.Log ("BEEP");
+			GameManager.manager.end = 6;
+			StartCoroutine (GameManager.manager.EndGame ());
+		}
+		else if ((GameManager.manager.suspect.Count - 1) == 31)
+		{
+			if (GameManager.manager.suspect [27].decision == 1 || GameManager.manager.suspect [30].decision == 1) {
+				Debug.Log ("BEEP");
+				GameManager.manager.end = 7;
+			}
+			else if (GameManager.manager.suspect [27].decision == 2 || GameManager.manager.suspect [30].decision == 1) {
+				GameManager.manager.end = 8;
+			}
+			else if (GameManager.manager.suspect [27].decision == 3 || GameManager.manager.suspect [30].decision == 1) {
+				GameManager.manager.end = 9;
+			}
+			else if ((GameManager.manager.suspect [27].decision == 1 && GameManager.manager.suspect [30].decision == 2) || 
+				(GameManager.manager.suspect [27].decision == 2 && GameManager.manager.suspect [30].decision == 2) || 
+				(GameManager.manager.suspect [27].decision == 3 || GameManager.manager.suspect [30].decision == 2)) {
+				GameManager.manager.end = 10;
+			}
+			else if ((GameManager.manager.suspect [27].decision == 1 && GameManager.manager.suspect [30].decision == 3) || 
+				(GameManager.manager.suspect [27].decision == 2 && GameManager.manager.suspect [30].decision == 3) || 
+				(GameManager.manager.suspect [27].decision == 3 || GameManager.manager.suspect [30].decision == 3)) {
+				GameManager.manager.end = 11;
+			}
+			StartCoroutine(GameManager.manager.EndGame ());
 		}
 	}
 
@@ -134,16 +210,8 @@ public class ContactAppManager : MonoBehaviour {
 
 
     public IEnumerator AddResponse(int responseNum)
-    {
-		// find the option buttons
-        GameObject[] optionbuttons = GameObject.FindGameObjectsWithTag("option");
-
-		// set the buttons to false / hide them
-        for (int i = 0; i < optionbuttons.Length; i++)
-        {
-            optionbuttons[i].SetActive(false);
-        }
-
+	{
+		// Debug.Log ("Howdy");
 		// check which is loaded and display the appropriate response text
 		if(handlerLoaded)
 		{
@@ -165,15 +233,38 @@ public class ContactAppManager : MonoBehaviour {
         {
 			respond (responseNum);
 			twoMsg = true;
+
+			Debug.Log (twoMsg);
+
+			yield return new WaitForSeconds(Random.Range(1.5f, 2.0f));
+
+			if (newResponseTwo == false && pause != true && newResponse == true) {
+				Debug.Log ("one reply");
+				ToggleOptions ();
+				newResponse = false;
+				newResponseTwo = false;
+			}
+
+			if (newResponseTwo == true && pause != true) {
+				Debug.Log ("Adding Bit Two");
+				StartCoroutine (AddResponseTwo ());
+				newResponse = false;
+				newResponseTwo = false;
+			}
+
+			Debug.Log (twoMsg);
         }
 			
-		yield return new WaitForSeconds(Random.Range(1.5f, 2.0f));
 
+	}
 
-        if (twoMsg == true)
-        {
+	public IEnumerator AddResponseTwo()
+	{
+		if (twoMsg == true)
+		{
 			Debug.Log (GameManager.manager.handlerR + " " + twoMsg);
 			if (handlerLoaded && twoMsg) {
+				Debug.Log ("MsgAdded");
 				GameManager.manager.msgs.Add (new Messages (GameManager.manager.handlerName, Handler.handler.responses [GameManager.manager.handlerR], senderName, message, messageBox, false));
 				twoMsg = false;
 				GameManager.manager.handlerR++;
@@ -183,20 +274,38 @@ public class ContactAppManager : MonoBehaviour {
 				twoMsg = false;
 				GameManager.manager.suspectR++;
 			}
-        }
-		yield return new WaitForSeconds (0.5f);
+		}
+		yield return new WaitForSeconds (0.2f);
 
 		responding.gameObject.SetActive (false);
 
-        for (int i = 0; i < optionbuttons.Length; i++)
-        {
-            optionbuttons[i].SetActive(true);
-        }
-		newResponse = false;
-	
+		yield return new WaitForSeconds (0.9f);
+
+		ToggleOptions ("r2");
 	}
 
-	void respond(int num)
+	public void ToggleOptions(string debugText = null){
+		// find the option buttons
+		if (optionsOn) {
+			Debug.Log ("toggling off - " + debugText);
+			// set the buttons to false / hide them
+			for (int i = 0; i < optionbuttons.Length; i++) {
+				optionbuttons [i].SetActive (false);
+			}
+			optionsOn = false;
+			return;
+		} else if (optionsOn == false){
+			Debug.Log ("toggling - " + debugText);
+			for (int i = 0; i < optionbuttons.Length; i++)
+			{
+				optionbuttons[i].SetActive(true);
+			}
+			optionsOn = true;
+			return;
+		}
+	}
+
+	public void respond(int num)
 	{
 		// check which scene is loaded and then display the appropriate response based on what option the player selected, referencing the game manager's option list and index
 

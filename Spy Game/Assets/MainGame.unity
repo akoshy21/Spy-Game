@@ -565,6 +565,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1361e6c1a77ac644ba23b90888c2e00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handlerButton: {fileID: 1494298880}
+  handlerNotif: {fileID: 682779381}
+  suspectButton: {fileID: 1518506919}
+  suspectNotif: {fileID: 956065897}
 --- !u!4 &1119107430
 Transform:
   m_ObjectHideFlags: 0

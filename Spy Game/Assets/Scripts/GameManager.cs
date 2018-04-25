@@ -17,12 +17,6 @@ public class GameManager : MonoBehaviour {
 	public List<Messages> msgs = new List<Messages>();
 	public List<Messages> suspect = new List<Messages> ();
 
-	public GameObject contactButton;
-	public GameObject contactNotif;
-
-	public GameObject suspectButton;
-	public GameObject suspectNotif;
-
 	// see if the contact/message app has started up yet.
 	public bool contactStartup = false;
 	public bool suspectStartup = true;
@@ -40,6 +34,8 @@ public class GameManager : MonoBehaviour {
 
     public int handlerR = 0;
 	public int suspectR = 0;
+
+	public int end = 0;
 
     private IEnumerator coroutine;
 
@@ -113,7 +109,11 @@ public class GameManager : MonoBehaviour {
 		CheckForClicks ();
 
 		//Debug.Log (EventSystem.current);
-			
+
+		if (personality < -15) {
+			EndGame ();
+		}
+
 	}
 		
 	void OnDisable()
@@ -148,9 +148,24 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
+
+	public void unloadOtherScenes(string app)
+	{
+		int c = SceneManager.sceneCount;
+		for (int i = 0; i < c; i++)
+		{
+			Scene scene = SceneManager.GetSceneAt (i);
+
+			if (scene.name != "MainGame" && scene.name != app)
+			{
+				SceneManager.UnloadSceneAsync (scene);
+			}
+		}
+	}
+
 	public bool checkIfLoaded(string sceneName) {
-		for(int i=0; i< UnityEditor.SceneManagement.EditorSceneManager.sceneCount; ++i) {
-			var scene = UnityEditor.SceneManagement.EditorSceneManager.GetSceneAt(i);
+		for(int i=0; i< SceneManager.sceneCount; ++i) {
+			var scene = SceneManager.GetSceneAt(i);
 
 			if(scene.name == sceneName) {
 				return true; //the scene is already loaded
@@ -171,20 +186,20 @@ public class GameManager : MonoBehaviour {
 	{
 		// Debug.Log("HI");
 		if (newMessageHandler == true && checkIfLoaded ("Messenger") == false) {
-			contactNotif.SetActive (true);
+			Variables.variable.handlerNotif.SetActive (true);
 		}
 		else if(checkIfLoaded("Messenger"))
 		{
-			contactNotif.SetActive (false);
+			Variables.variable.handlerNotif.SetActive (false);
 			//Debug.Log ("Beep");
 		}
 
 		if (newMessageSuspect == true && checkIfLoaded ("Suspect") == false) {
-			suspectNotif.SetActive (true);
+			Variables.variable.suspectNotif.SetActive (true);
 		}
 		else if(checkIfLoaded("Suspect"))
 		{
-			suspectNotif.SetActive (false);
+			Variables.variable.suspectNotif.SetActive (false);
 			//Debug.Log ("Beep");
 		}
 	}
@@ -235,6 +250,15 @@ public class GameManager : MonoBehaviour {
 			sigFemale = true;
 			return "Elsie";
 		}
+	}
+
+	public IEnumerator EndGame()
+	{
+		handlerPause = true;
+		suspectPause = true;
+		yield return new WaitForSeconds (1.0f);
+		SceneManager.LoadScene ("End", LoadSceneMode.Additive);
+		unloadOtherScenes ("End");
 	}
 }
 

@@ -67,12 +67,12 @@ public class OptionButtons : MonoBehaviour {
 	void OptionsOnClick()
 	{
 		msgResponse ();
+		TriggerResponse(optionNum);
 
 		decisionResult (optionNum);
+		contactApp.GetComponent<ContactAppManager>().ToggleOptions ("options");
 
 		contactApp.GetComponent<AudioSource> ().Play ();
-
-
 	}
 
 	void msgResponse()
@@ -88,10 +88,20 @@ public class OptionButtons : MonoBehaviour {
 				GameManager.manager.msgs.Add (new Messages (GameManager.manager.playerName, GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].optionThree, senderName, message, messageBox, true, 3));
 				GameManager.manager.personality += GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].effectThree;
 			}
-
+			Debug.Log (GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].replies);
+			if (GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].replies != 0) {
+				contactApp.GetComponent<ContactAppManager> ().newResponse = true;
+				if (GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].replies == 1) {
+					contactApp.GetComponent<ContactAppManager> ().newResponseTwo = false;
+				} else if (GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].replies == 2) {
+					contactApp.GetComponent<ContactAppManager> ().newResponseTwo = true;
+				}
+			}
+				
 			contactApp.GetComponent<ContactAppManager>().oneMsg = true;
-			contactApp.GetComponent<ContactAppManager> ().newResponse = true;
+				
 			GameManager.manager.handlerOptionIndex++;
+			// TriggerResponse(optionNum);
 		}
 
 
@@ -113,7 +123,18 @@ public class OptionButtons : MonoBehaviour {
 			}
 
 			contactApp.GetComponent<ContactAppManager>().oneMsg = true;
-			contactApp.GetComponent<ContactAppManager> ().newResponse = true;
+
+			if (GameManager.manager.suspectOptionList [GameManager.manager.suspectOptionIndex].replies != 0) {
+				contactApp.GetComponent<ContactAppManager> ().newResponse = true;
+				Debug.Log (GameManager.manager.suspectOptionList [GameManager.manager.suspectOptionIndex].replies);
+
+				if (GameManager.manager.suspectOptionList [GameManager.manager.suspectOptionIndex].replies == 1) {
+					contactApp.GetComponent<ContactAppManager> ().newResponseTwo = false;
+				} else if (GameManager.manager.suspectOptionList [GameManager.manager.suspectOptionIndex].replies == 2) {
+					contactApp.GetComponent<ContactAppManager> ().newResponseTwo = true;
+				}
+			}
+
 			GameManager.manager.suspectOptionIndex++;
 		}
 	}
@@ -121,9 +142,17 @@ public class OptionButtons : MonoBehaviour {
 	void decisionResult(int num)
 	{
 		EventSystem.current.SetSelectedGameObject (null);
-		GameManager.manager.personality += GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].optionSelected = num;
+		GameManager.manager.handlerOptionList [GameManager.manager.handlerOptionIndex].optionSelected = num;
 
 		contactApp.GetComponent<ContactAppManager> ().rNum = optionNum;
+	}
+
+	void TriggerResponse(int rNum)
+	{
+		Debug.Log ("Triggering");
+		IEnumerator co = contactApp.GetComponent<ContactAppManager>().AddResponse(rNum);
+		StartCoroutine(co);
+		Debug.Log ("triggered");
 	}
 
 }

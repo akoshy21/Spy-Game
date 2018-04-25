@@ -22,9 +22,9 @@ public class IconButtonScript : MonoBehaviour {
 		GameManager.manager.CheckForClicks ();
 	}
 
-	void TaskOnClick () {
+	public void TaskOnClick () {
 		if (GameManager.manager.checkIfLoaded(buttonApp) == false) {
-			unloadOtherScenes ();
+			unloadOtherScenes (buttonApp);
 			SceneManager.LoadScene (buttonApp, LoadSceneMode.Additive);
 			open = true;
 		}
@@ -36,14 +36,14 @@ public class IconButtonScript : MonoBehaviour {
 		EventSystem.current.SetSelectedGameObject (null);
 	}
 
-	void unloadOtherScenes()
+	public void unloadOtherScenes(string app)
 	{
 		int c = SceneManager.sceneCount;
 		for (int i = 0; i < c; i++)
 		{
 			Scene scene = SceneManager.GetSceneAt (i);
 
-			if (scene.name != "MainGame" && scene.name != buttonApp)
+			if (scene.name != "MainGame" && scene.name != app)
 			{
 				SceneManager.UnloadSceneAsync (scene);
 			}
