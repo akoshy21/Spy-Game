@@ -32,11 +32,7 @@ public class End : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (Input.anyKey && extraText == false) {
-			endText.text += "\n\n\n To try again, press 'R'";
-			extraText = true;
-			GameManager.manager.GetComponent<AudioSource> ().PlayOneShot (beep, 0.4F);
-		}
+		StartCoroutine(delay ());
 		if (Input.GetKey (KeyCode.R)) {
 			Restart ();
 		}
@@ -80,6 +76,17 @@ public class End : MonoBehaviour {
 	public void Quit ()
 	{
 		Application.Quit ();
+	}
+
+	IEnumerator delay()
+	{
+		if(extraText == false)
+		{
+			extraText = true;
+			yield return new WaitForSeconds(1.0f);
+			endText.text += "\n\n\n To try again, press 'R'";
+			GameManager.manager.GetComponent<AudioSource> ().PlayOneShot (beep, 0.4F);
+		}
 	}
 
 	public void Restart()
